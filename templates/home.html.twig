@@ -4,6 +4,12 @@
 
 {% block body %}
 
+ {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <a href="{{ path('app_logout') }}" class="btn btn-primary">Log Out</a>
+        {% else %}
+        <a href="{{ path('app_login') }}" class="btn btn-primary">Log In</a>
+{% endif %}
+
 <div id="app"></div>
 
 {% endblock %}

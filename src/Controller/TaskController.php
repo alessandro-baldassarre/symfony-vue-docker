@@ -41,10 +41,10 @@ class TaskController extends AbstractController
             $entityManager->persist($task);
             $entityManager->flush();
 
-            $this->addFlash(
-                'notice',
-                'Task Added!'
-            );
+            // $this->addFlash(
+            //     'notice',
+            //     'Task Added!'
+            // );
             // return $this->redirectToRoute('task_success');
             return $this->redirectToRoute($request->attributes->get('_route'));
 

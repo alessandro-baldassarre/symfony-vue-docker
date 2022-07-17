@@ -7,18 +7,41 @@
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    <form action="{{ path('app_login') }}" method="post">
+    {# <form action="{{ path('app_login') }}" method="post">
         <label for="username">Email:</label>
         <input type="text" id="username" name="_username" value="{{ last_username }}"/>
 
         <label for="password">Password:</label>
-        <input type="password" id="password" name="_password"/>
+        <input type="password" id="password" name="_password"/> #}
 
         {# If you want to control the URL the user is redirected to on success #}
-        <input type="hidden" name="_target_path" value="/product"/>
+        {# <input type="hidden" name="_target_path" value="/product"/>
 
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
         <button type="submit">login</button>
-    </form>
+    </form> #}
+<div class="container">
+    <div class="row justify-content-center p-5">
+        <div class="col-6 text-center">
+
+            <form action="{{ path('app_login') }}" method="post">
+                <div class="mb-3 w-100">
+                    <label class="w-25" for="username">Email:</label>
+                    <input class="w-75" type="text" id="username" name="_username" value="{{ last_username }}"/>
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="mb-3 w-100">
+                    <label class="w-25" for="password">Password:</label>
+                    <input class="w-75" type="password" id="password" name="_password"/>
+                </div>
+
+                <input type="hidden" name="_target_path" value="/"/>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+
+        </div>
+    </div>
+</div>
 {% endblock %}

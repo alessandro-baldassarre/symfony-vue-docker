@@ -10,40 +10,44 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, ValidatorInterface $validator): Response
     {
-        $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
+        
+        if ($request->getContent() != "") {
+            $registration_form = $request->request->all();
+            // dd($registration_form["email"]);
+            $user = new User();
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
-                    $form->get('plainPassword')->getData()
-                )
-            );
+                    $registration_form["password"]
+                ));
 
+            $user->setEmail($registration_form["email"]);
+
+            $errors = $validator->validate($user);
+
+            if (count($errors) > 0) {
+        /*
+         * Uses a __toString method on the $errors variable which is a
+         * ConstraintViolationList object. This gives us a nice string
+         * for debugging.
+         */
+            return $this->redirectToRoute($request->attributes->get('_route'), ['errors' => $errors]);
+            }
             $entityManager->persist($user);
             $entityManager->flush();
-            // do anything else you need here, like send an email
+            return $this->redirectToRoute('app_home');
 
-            $this->addFlash(
-                'notice',
-                'Task Added!'
-            );
-            // return $this->redirectToRoute('task_success');
-            return $this->redirectToRoute($request->attributes->get('_route'));
         }
-
-        return $this->render('registration/register.html.twig', [
-            'registrationForm' => $form->createView(),
-        ]);
+        $errors = "";
+        return $this->render('registration/register.html.twig', ['errors' => $errors]);
     }
 }

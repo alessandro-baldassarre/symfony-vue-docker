@@ -3,7 +3,7 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+    {# <h1>Register</h1>
 
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.email) }}
@@ -13,5 +13,48 @@
         {{ form_row(registrationForm.agreeTerms) }}
 
         <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+    {{ form_end(registrationForm) }} #}
+    {# <form name="registration_form" method="post">
+        <div><label for="registration_form_email" class="required">Email</label><input type="text" id="registration_form_email" name="registration_form[email]" required="required" maxlength="180"></div>
+        <div><label for="registration_form_plainPassword" class="required">Password</label><input type="password" id="registration_form_plainPassword" name="registration_form[plainPassword]" required="required" autocomplete="new-password"></div>
+        <div><label for="registration_form_agreeTerms" class="required">Agree terms</label><input type="checkbox" id="registration_form_agreeTerms" name="registration_form[agreeTerms]" required="required" value="1"></div>
+
+        <button type="submit" class="btn">Register</button>
+    <input type="hidden" id="registration_form__token" name="registration_form[_token]" value="80dac7d4d7289.bPdUSNcQke2cyfzcka2yadawy6on61UwoFmNJ0ZNZ7E.KL5kBOUl8471uKyp9eT-UJ7n8pNCuTp14SzhRTQJN_UqmTgLk2P-pcyGsQ"></form>
+     #}
+    {% if errors != "" %}
+        <h3>The form has the following errors</h3>
+        <ul>
+            {% for error in errors %}
+                <li>{{ error.message }}</li>
+            {% endfor %}    
+        </ul>
+    {% endif %}
+    <div class="container">
+        <div class="row justify-content-center p-5">
+            <div class="col-6 text-center">
+
+                <form action="{{ path('app_register') }}" method="post">
+                    <div class="mb-3 w-100">
+                        <label class="w-25" for="registration_form_email" class="required">Email:</label>
+                        <input class="w-75" type="email" id="registration_form_email" name="email" required="required" maxlength="180"/>
+                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    </div>
+                    <div class="mb-3 w-100">
+                        <label class="w-25" for="registration_form_plainPassword" class="required">Password:</label>
+                        <input class="w-75"  type="password" id="registration_form_plainPassword" name="password" required="required" autocomplete="new-password"/>
+                    </div>
+                    <div class="mb-3 w-100">
+                        <label for="registration_form_agreeTerms" class="required">Agree terms</label>
+                        <input type="checkbox" id="registration_form_agreeTerms" name="agree_terms" required="required" value="1">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Register</button>
+                    <input type="hidden" id="registration_form__token" name="token" value="80dac7d4d7289.bPdUSNcQke2cyfzcka2yadawy6on61UwoFmNJ0ZNZ7E.KL5kBOUl8471uKyp9eT-UJ7n8pNCuTp14SzhRTQJN_UqmTgLk2P-pcyGsQ">
+                </form>
+
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
