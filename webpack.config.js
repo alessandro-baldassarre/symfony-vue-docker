@@ -26,6 +26,8 @@ Encore
     "@": `${__dirname}/assets`,
   })
 
+  .enableSassLoader()
+
   .enableVueLoader()
 
   // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
@@ -62,7 +64,6 @@ Encore
   });
 
 // enables Sass/SCSS support
-//.enableSassLoader()
 
 // uncomment if you use TypeScript
 //.enableTypeScriptLoader()
