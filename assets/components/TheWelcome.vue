@@ -1,14 +1,48 @@
-<script setup>
-import WelcomeItem from './WelcomeItem.vue'
-import DocumentationIcon from './icons/IconDocumentation.vue'
-import ToolingIcon from './icons/IconTooling.vue'
-import EcosystemIcon from './icons/IconEcosystem.vue'
-import CommunityIcon from './icons/IconCommunity.vue'
-import SupportIcon from './icons/IconSupport.vue'
+<script>
+import WelcomeItem from "./WelcomeItem.vue";
+import DocumentationIcon from "./icons/IconDocumentation.vue";
+import ToolingIcon from "./icons/IconTooling.vue";
+import EcosystemIcon from "./icons/IconEcosystem.vue";
+import CommunityIcon from "./icons/IconCommunity.vue";
+import SupportIcon from "./icons/IconSupport.vue";
+import axios from "axios";
+export default {
+    data() {
+        return {
+            data: [],
+        };
+    },
+    methods: {
+        getDati() {
+            axios.interceptors.request.use((config) => {
+                config.headers["Content-Type"] = "application/json";
+                return config;
+            });
+            axios
+                .get(
+                    "https://rest.mercuriosistemi.com/api/esercizi/esercizi/10",
+                    options
+                )
+                .then((response) => {
+                    console.log(response);
+                });
+        },
+    },
+    mounted() {
+        // methods can be called in lifecycle hooks, or other methods!
+        this.getDati();
+    },
+};
 </script>
 
 <template>
-  <WelcomeItem>
+    <div>
+        <img
+            src="https://rest.mercuriosistemi.com/api/esercizi/esercizi/10/logo"
+            alt=""
+        />
+    </div>
+    <!-- <WelcomeItem>
     <template #icon>
       <DocumentationIcon />
     </template>
@@ -80,5 +114,5 @@ import SupportIcon from './icons/IconSupport.vue'
     As an independent project, Vue relies on community backing for its sustainability. You can help
     us by
     <a target="_blank" href="https://vuejs.org/sponsor/">becoming a sponsor</a>.
-  </WelcomeItem>
+  </WelcomeItem> -->
 </template>
