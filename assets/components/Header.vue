@@ -92,4 +92,8 @@ export default {
     </header>
 </template>
 
-<style></style>
+<style>
+header {
+    height: 71px;
+}
+</style>

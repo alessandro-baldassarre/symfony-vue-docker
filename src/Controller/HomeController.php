@@ -30,6 +30,7 @@ class HomeController extends AbstractController
     }
 
     #[Route('/', name: 'app_home')]
+    #[Route('/{route}', name: 'vue_pages', requirements: ['route' => '^(?!.*login|logout|register).+'])]
     public function index(ManagerRegistry $doctrine,Service $service, TranslatorInterface $translator, Request $request): Response
     {   
         // $entityManager = $doctrine->getManager();
