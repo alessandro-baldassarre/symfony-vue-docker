@@ -4,18 +4,22 @@ import axios from "axios"
 export default {
     data() {
         return {
-            userInfo: {},
+            userInfo: null,
         }
     },
     methods: {
         getUserInfo() {
             axios
-                .get("/api/getuserinfo")
+                .get("/api/userinfo")
                 .then((response) => {
                     console.log(response)
+                    this.userInfo = response.data
+                    console.log(this.userInfo)
                 })
                 .catch((e) => {
                     console.log(e)
+                    this.userInfo = null
+                    console.log(this.userInfo)
                 })
         },
     },
@@ -80,7 +84,12 @@ export default {
                 </form>
 
                 <div class="text-end">
-                    <a href="/login" class="btn btn-outline-light me-2">Login</a>
+                    <span v-if="!userInfo"
+                        ><a href="/login" class="btn btn-outline-light me-2">Login</a></span
+                    >
+                    <span v-else>
+                        <a href="/logout" class="btn btn-outline-light me-2">Logout</a></span
+                    >
                     <a href="/register" class="btn btn-warning">Sign-up</a>
                 </div>
             </div>
