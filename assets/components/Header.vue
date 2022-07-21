@@ -23,12 +23,18 @@
                     </svg>
                 </a> -->
 
-                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <ul
+                    class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
+                >
                     <li>
-                        <router-link to="/" class="nav-link px-2 text-white">Home</router-link>
+                        <router-link to="/" class="nav-link px-2 text-white"
+                            >Home</router-link
+                        >
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-2 text-white">Features</a>
+                        <a href="#" class="nav-link px-2 text-white"
+                            >Features</a
+                        >
                     </li>
                     <li>
                         <a href="#" class="nav-link px-2 text-white">Pricing</a>
@@ -37,7 +43,9 @@
                         <a href="#" class="nav-link px-2 text-white">FAQs</a>
                     </li>
                     <li>
-                        <router-link to="/about" class="nav-link px-2 text-white"
+                        <router-link
+                            to="/about"
+                            class="nav-link px-2 text-white"
                             >About</router-link
                         >
                     </li>
@@ -53,8 +61,10 @@
                 </form>
 
                 <div class="text-end">
-                    <a href="/login" class="btn btn-outline-light me-2">Login</a>
-                    <button type="button" class="btn btn-warning">Sign-up</button>
+                    <a href="/login" class="btn btn-outline-light me-2"
+                        >Login</a
+                    >
+                    <a href="/register" class="btn btn-warning">Sign-up</a>
                 </div>
             </div>
         </div>
