@@ -1,4 +1,31 @@
-<script setup></script>
+<script>
+import axios from "axios"
+
+export default {
+    data() {
+        return {
+            userInfo: {},
+        }
+    },
+    methods: {
+        getUserInfo() {
+            axios
+                .get("/api/getuserinfo")
+                .then((response) => {
+                    console.log(response)
+                })
+                .catch((e) => {
+                    console.log(e)
+                })
+        },
+    },
+
+    // `mounted` is a lifecycle hook which we will explain later
+    mounted() {
+        this.getUserInfo()
+    },
+}
+</script>
 
 <template>
     <!-- <RouterLink to="/">Home</RouterLink>
@@ -23,18 +50,12 @@
                     </svg>
                 </a> -->
 
-                <ul
-                    class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
-                >
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li>
-                        <router-link to="/" class="nav-link px-2 text-white"
-                            >Home</router-link
-                        >
+                        <router-link to="/" class="nav-link px-2 text-white">Home</router-link>
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-2 text-white"
-                            >Features</a
-                        >
+                        <a href="#" class="nav-link px-2 text-white">Features</a>
                     </li>
                     <li>
                         <a href="#" class="nav-link px-2 text-white">Pricing</a>
@@ -43,9 +64,7 @@
                         <a href="#" class="nav-link px-2 text-white">FAQs</a>
                     </li>
                     <li>
-                        <router-link
-                            to="/about"
-                            class="nav-link px-2 text-white"
+                        <router-link to="/about" class="nav-link px-2 text-white"
                             >About</router-link
                         >
                     </li>
@@ -61,9 +80,7 @@
                 </form>
 
                 <div class="text-end">
-                    <a href="/login" class="btn btn-outline-light me-2"
-                        >Login</a
-                    >
+                    <a href="/login" class="btn btn-outline-light me-2">Login</a>
                     <a href="/register" class="btn btn-warning">Sign-up</a>
                 </div>
             </div>
