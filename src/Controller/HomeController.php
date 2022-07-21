@@ -18,6 +18,9 @@ use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Cache\Adapter\TagAwareAdapter;
 use App\Event\VideoCreatedEvent;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Contracts\Translation\TranslatorInterface;
+
 class HomeController extends AbstractController
 {
 
@@ -27,7 +30,7 @@ class HomeController extends AbstractController
     }
 
     #[Route('/', name: 'app_home')]
-    public function index(ManagerRegistry $doctrine,Service $service): Response
+    public function index(ManagerRegistry $doctrine,Service $service, TranslatorInterface $translator, Request $request): Response
     {   
         // $entityManager = $doctrine->getManager();
         
@@ -119,6 +122,10 @@ class HomeController extends AbstractController
 
 
         $this->dispatcher->dispatch($event, 'video.created.event');
+
+        $translated = $translator->trans('some.key');
+        dump($translated);
+        dump($request->getLocale());
         
         return $this->render('home.html.twig');
     }

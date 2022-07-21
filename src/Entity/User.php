@@ -36,13 +36,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Video::class)]
-    private Collection $videos;
+    // #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Video::class)]
+    // private Collection $videos;
 
-    public function __construct()
-    {
-        $this->videos = new ArrayCollection();
-    }
+    // public function __construct()
+    // {
+    //     $this->videos = new ArrayCollection();
+    // }
 
     public function getId(): ?int
     {
