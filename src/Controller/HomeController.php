@@ -130,3 +130,6 @@ class HomeController extends AbstractController
         return $this->render('home.html.twig');
     }
 }
+
+
+// bin/console doctrine:query:sql "INSERT INTO user (id, email, roles, password) VALUES (nextval('user_id_seq'), 'admin@admin.com', '[\"ROLE_ADMIN\"]', '\$argon2id\$v=19\$m=65536,t=4,p=1\$BQG+jovPcunctc30xG5PxQ\$TiGbx451NKdo+g9vLtfkMy4KjASKSOcnNxjij4gTX1s')"
