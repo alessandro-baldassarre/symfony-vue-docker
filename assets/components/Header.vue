@@ -12,9 +12,8 @@ export default {
             axios
                 .get("/api/userinfo")
                 .then((response) => {
-                    console.log(response)
                     this.userInfo = response.data
-                    console.log(this.userInfo)
+                    console.log(this.userInfo.mail)
                 })
                 .catch((e) => {
                     console.log(e)
@@ -59,13 +58,9 @@ export default {
                         <router-link to="/" class="nav-link px-2 text-white">Home</router-link>
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-2 text-white">Features</a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link px-2 text-white">Pricing</a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link px-2 text-white">FAQs</a>
+                        <router-link to="/modulo" class="nav-link px-2 text-white"
+                            >Modulo</router-link
+                        >
                     </li>
                     <li>
                         <router-link to="/about" class="nav-link px-2 text-white"

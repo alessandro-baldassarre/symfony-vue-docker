@@ -28,7 +28,8 @@ class SecurityController extends AbstractController
         //     //  $token = ...; // somehow create an API token for $user
         // return $this->json(['user'  => $user->getUserIdentifier()]);
         // dd($this->getUser()->getUserIdentifier());
-        $user = $this->getUser()->getUserIdentifier();
-        return $this->json(['user' => $user]);
+        $user_mail = $this->getUser()->getEmail();
+        $user_id = $this->getUser()->getId();
+        return $this->json(['id' => $user_id, 'mail' => $user_mail]);
     }
 }
